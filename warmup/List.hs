@@ -24,8 +24,25 @@ member term (Cons x xs) = if x == term
                           then True
                           else member term xs
 
+--(14) Define a *function* snoc :: Int -> List -> List that adds an integer to
+--     the end of a list.
+
+snoc :: Int -> List -> List
+snoc n Empty = Cons n Empty
+snoc n (Cons x xs) = Cons x (snoc n xs)
+
+--(15) Define a *function* rev :: List -> List that reverses the elements in a
+--     list.
+
+rev :: List -> List
+rev Empty = Empty
+rev (Cons x xs) = snoc x (rev xs)
+
 main :: IO ()
 main = do
     print l
     print $ rest l
     print $ member 2 l
+    print $ member 5 l
+    print $ snoc 5 l
+    print $ rev l
